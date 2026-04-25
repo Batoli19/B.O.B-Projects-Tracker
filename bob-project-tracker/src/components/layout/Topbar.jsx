@@ -1,6 +1,7 @@
 import { Bell } from 'lucide-react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { TEAM } from '../../data/mockData.js'
+import { useNotifications } from '../../state/NotificationsProvider.jsx'
 
 function getInitials(name) {
   return name
@@ -22,6 +23,8 @@ function getTitle(pathname) {
 
 export default function Topbar() {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { unreadCount } = useNotifications()
   const sessionUser = TEAM.find((m) => m.name === 'Thato Seretse') ?? TEAM[1]
   const initials = getInitials(sessionUser.name)
   const title = getTitle(location.pathname)
@@ -35,8 +38,16 @@ export default function Topbar() {
             type="button"
             className="inline-flex h-9 w-9 items-center justify-center rounded-btn border border-white/15 bg-white/0 hover:bg-white/10"
             aria-label="Notifications"
+            onClick={() => navigate('/notifications')}
           >
-            <Bell className="h-5 w-5 text-white" />
+            <span className="relative">
+              <Bell className="h-5 w-5 text-white" />
+              {unreadCount > 0 ? (
+                <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-statusOrange px-1 text-xs font-bold text-white">
+                  {unreadCount > 99 ? '99+' : unreadCount}
+                </span>
+              ) : null}
+            </span>
           </button>
           <div className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-xs font-semibold text-white">

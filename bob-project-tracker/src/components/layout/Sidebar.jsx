@@ -6,7 +6,8 @@ import {
   LayoutDashboard,
   PlusCircle,
 } from 'lucide-react'
-import { PROJECTS, TEAM } from '../../data/mockData.js'
+import { TEAM } from '../../data/mockData.js'
+import { useNotifications } from '../../state/NotificationsProvider.jsx'
 
 const navItems = [
   { to: '/dashboard', label: 'Dashboard', Icon: LayoutDashboard },
@@ -26,9 +27,7 @@ function getInitials(name) {
 
 export default function Sidebar() {
   const sessionUser = TEAM.find((m) => m.name === 'Thato Seretse') ?? TEAM[1]
-  const attentionCount = PROJECTS.filter(
-    (p) => p.workflowStage === 'waiting-review' || p.status === 'overdue',
-  ).length
+  const { unreadCount } = useNotifications()
 
   return (
     <aside className="w-16 shrink-0 bg-gradient-to-b from-primary to-primaryDeep text-white md:w-64">
@@ -60,7 +59,7 @@ export default function Sidebar() {
             >
               <Icon className="h-5 w-5 text-white/90 group-hover:text-white" />
               <span className="hidden flex-1 md:block">{label}</span>
-              {showDot && attentionCount > 0 ? (
+              {showDot && unreadCount > 0 ? (
                 <span className="h-2 w-2 rounded-full bg-statusOrange" />
               ) : null}
             </NavLink>
