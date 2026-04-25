@@ -230,7 +230,7 @@ export default function NewProject() {
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="rounded-btn border border-border bg-card px-4 py-2 text-sm font-semibold text-textPrimary hover:bg-mutedBg"
+              className="rounded-btn border border-border bg-card px-[18px] py-2 text-[13px] font-semibold text-textPrimary transition-colors duration-150 hover:bg-mutedBg"
             >
               Cancel
             </button>
@@ -238,8 +238,8 @@ export default function NewProject() {
               type="submit"
               disabled={!canSubmit}
               className={[
-                'rounded-btn bg-primary px-4 py-2 text-sm font-semibold text-white',
-                canSubmit ? 'hover:opacity-95' : 'cursor-not-allowed opacity-60',
+                'rounded-btn bg-primary px-[18px] py-2 text-[13px] font-semibold text-white transition-colors duration-150',
+                canSubmit ? 'hover:bg-sidebarStart' : 'cursor-not-allowed opacity-60',
               ].join(' ')}
             >
               Create Project

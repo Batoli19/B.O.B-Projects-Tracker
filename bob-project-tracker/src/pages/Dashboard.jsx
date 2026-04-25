@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import {
   Activity,
   AlertCircle,
-  Bell,
+  Info,
   CheckCircle,
   Clock,
   FolderKanban,
@@ -16,6 +16,7 @@ import {
   Tooltip,
 } from 'recharts'
 import KPICard from '../components/ui/KPICard.jsx'
+import TypeBadge from '../components/ui/TypeBadge.jsx'
 import { PROJECTS, TEAM } from '../data/mockData.js'
 
 function formatDate(dateStr) {
@@ -76,18 +77,6 @@ const TYPE_COLORS = {
   Research: '#A855F7',
 }
 
-function TypeBadge({ type }) {
-  const color = TYPE_COLORS[type] ?? '#64748B'
-  return (
-    <span
-      className="inline-flex items-center rounded-btn border px-2 py-0.5 text-xs font-medium"
-      style={{ borderColor: color, color }}
-    >
-      {type}
-    </span>
-  )
-}
-
 export default function Dashboard() {
   const totalProjects = PROJECTS.length
   const completedCount = PROJECTS.filter((p) => p.status === 'completed').length
@@ -138,11 +127,11 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {attentionCount > 0 ? (
-        <div className="rounded-card border border-statusOrange bg-warnBg p-4">
+        <div className="rounded-card border border-infoBorder bg-infoBg p-6">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Bell className="h-5 w-5 text-statusOrange" />
-              <div className="text-sm text-textPrimary">
+              <Info className="h-5 w-5 text-primary" />
+              <div className="text-sm font-medium text-blue-800">
                 You have <span className="font-semibold">{attentionCount}</span>{' '}
                 items awaiting your attention
               </div>
@@ -163,31 +152,38 @@ export default function Dashboard() {
           value={totalProjects}
           icon={FolderKanban}
           accentColor="#1A3A6B"
+          iconBg="#DBEAFE"
         />
         <KPICard
           label="Completed"
           value={completedCount}
           icon={CheckCircle}
           accentColor="#16A34A"
+          iconBg="#DCFCE7"
         />
         <KPICard
           label="In Progress"
           value={inProgressCount}
           icon={Clock}
           accentColor="#D97706"
+          iconBg="#FFFBEB"
         />
         <KPICard
           label="Overdue"
           value={overdueCount}
           icon={AlertCircle}
           accentColor="#DC2626"
+          iconBg="#FEF2F2"
         />
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-5">
         <div className="rounded-card border border-border bg-card p-6 xl:col-span-3">
-          <div className="font-heading text-base font-semibold">
-            Project Status Overview
+          <div className="flex items-center">
+            <span className="mr-2.5 inline-block h-4 w-[3px] rounded-[2px] bg-teal align-middle" />
+            <div className="font-heading text-[14px] font-bold uppercase tracking-[1px] text-textPrimary">
+              Project Status Overview
+            </div>
           </div>
           <div className="mt-4 h-72">
             <ResponsiveContainer width="100%" height="100%">
@@ -217,7 +213,12 @@ export default function Dashboard() {
         </div>
 
         <div className="rounded-card border border-border bg-card p-6 xl:col-span-2">
-          <div className="font-heading text-base font-semibold">Projects by Type</div>
+          <div className="flex items-center">
+            <span className="mr-2.5 inline-block h-4 w-[3px] rounded-[2px] bg-teal align-middle" />
+            <div className="font-heading text-[14px] font-bold uppercase tracking-[1px] text-textPrimary">
+              Projects by Type
+            </div>
+          </div>
           <div className="mt-4 h-72">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -245,7 +246,12 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <div className="rounded-card border border-border bg-card p-6">
-          <div className="font-heading text-base font-semibold">Upcoming Deadlines</div>
+          <div className="flex items-center">
+            <span className="mr-2.5 inline-block h-4 w-[3px] rounded-[2px] bg-teal align-middle" />
+            <div className="font-heading text-[14px] font-bold uppercase tracking-[1px] text-textPrimary">
+              Upcoming Deadlines
+            </div>
+          </div>
           {upcoming.length === 0 ? (
             <div className="mt-4 text-sm text-textSecondary">No upcoming deadlines.</div>
           ) : (
@@ -289,9 +295,14 @@ export default function Dashboard() {
         </div>
 
         <div className="rounded-card border border-border bg-card p-6">
-          <div className="flex items-center gap-2">
-            <Activity className="h-4 w-4 text-textSecondary" />
-            <div className="font-heading text-base font-semibold">Recent Activity</div>
+          <div className="flex items-center">
+            <span className="mr-2.5 inline-block h-4 w-[3px] rounded-[2px] bg-teal align-middle" />
+            <div className="flex items-center gap-2">
+              <Activity className="h-4 w-4 text-textSecondary" />
+              <div className="font-heading text-[14px] font-bold uppercase tracking-[1px] text-textPrimary">
+                Recent Activity
+              </div>
+            </div>
           </div>
           <div className="mt-4 space-y-3">
             {recentActivity.map((entry) => {
@@ -299,7 +310,7 @@ export default function Dashboard() {
               const initials = entry.member?.avatar ?? '—'
               return (
                 <div key={entry.id} className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
+                  <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full border-2 border-border bg-primary text-xs font-bold text-white">
                     {initials}
                   </div>
                   <div className="min-w-0 flex-1">

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FolderOpen, PlusCircle, Search } from 'lucide-react'
 import StatusBadge from '../components/ui/StatusBadge.jsx'
+import TypeBadge from '../components/ui/TypeBadge.jsx'
 import { PROJECTS, TEAM } from '../data/mockData.js'
 
 function formatDate(dateStr) {
@@ -22,27 +23,6 @@ function stageLabel(stage) {
     resolved: 'Resolved',
   }
   return map[stage] ?? 'Draft'
-}
-
-const TYPE_COLORS = {
-  Audit: '#2563EB',
-  IT: '#0EA5E9',
-  Compliance: '#6366F1',
-  Inspection: '#14B8A6',
-  Policy: '#64748B',
-  Research: '#A855F7',
-}
-
-function TypeBadge({ type }) {
-  const color = TYPE_COLORS[type] ?? '#64748B'
-  return (
-    <span
-      className="inline-flex items-center rounded-btn border px-2 py-0.5 text-xs font-medium"
-      style={{ borderColor: color, color }}
-    >
-      {type}
-    </span>
-  )
 }
 
 function priorityDot(priority) {
@@ -93,14 +73,14 @@ export default function Projects() {
         <button
           type="button"
           onClick={() => navigate('/projects/new')}
-          className="inline-flex items-center gap-2 rounded-btn bg-primary px-4 py-2 text-sm font-semibold text-white hover:opacity-95"
+          className="inline-flex items-center gap-2 rounded-btn bg-primary px-[18px] py-2 text-[13px] font-semibold text-white transition-colors duration-150 hover:bg-sidebarStart"
         >
           <PlusCircle className="h-4 w-4 text-white" />
           <span>New Project</span>
         </button>
       </div>
 
-      <div className="rounded-card border border-border bg-card p-4">
+      <div className="rounded-card border border-border bg-card p-6">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-5">
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-textSecondary" />
@@ -181,7 +161,7 @@ export default function Projects() {
         <div className="w-full overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-mutedBg">
+              <tr className="bg-mutedBg border-b-2 border-border">
                 {[
                   '#',
                   'Project Title',
@@ -194,7 +174,7 @@ export default function Projects() {
                 ].map((h) => (
                   <th
                     key={h}
-                    className="whitespace-nowrap px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-textSecondary"
+                    className="whitespace-nowrap px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[1.2px] text-slate-400"
                   >
                     {h}
                   </th>
@@ -224,7 +204,7 @@ export default function Projects() {
                   return (
                     <tr
                       key={p.id}
-                      className="cursor-pointer border-t border-border hover:bg-mutedBg"
+                      className="cursor-pointer border-b border-tableRowBorder text-[14px] transition-colors duration-100 hover:bg-tableRowHover"
                       onClick={() => navigate(`/projects/${p.id}`)}
                     >
                       <td className="whitespace-nowrap px-4 py-3 text-sm text-textSecondary">
@@ -246,7 +226,7 @@ export default function Projects() {
                       </td>
                       <td className="whitespace-nowrap px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
+                          <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-border bg-primary text-xs font-bold text-white">
                             {assignee?.avatar ?? '--'}
                           </div>
                           <div className="text-sm text-textPrimary">

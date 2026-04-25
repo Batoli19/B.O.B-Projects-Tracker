@@ -57,7 +57,7 @@ export default function Notifications() {
         <button
           type="button"
           onClick={markAllRead}
-          className="rounded-btn border border-border bg-card px-3 py-2 text-sm font-semibold text-textPrimary hover:bg-mutedBg"
+          className="rounded-btn border-2 border-primary bg-card px-[18px] py-2 text-[13px] font-semibold text-primary transition-colors duration-150 hover:bg-mutedBg"
         >
           Mark all as read
         </button>
@@ -85,7 +85,7 @@ export default function Notifications() {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="rounded-card border border-border bg-card p-10 text-center">
+        <div className="rounded-card border border-border bg-card p-6 text-center">
           <div className="text-sm font-semibold text-textPrimary">No notifications</div>
           <div className="mt-1 text-sm text-textSecondary">
             You are all caught up for this filter.
@@ -99,7 +99,7 @@ export default function Notifications() {
               <div
                 key={n.id}
                 className={[
-                  'rounded-card border border-border p-4',
+                  'rounded-card border border-border p-6',
                   n.unread ? 'border-l-3 border-l-primary bg-mutedBg' : 'bg-card',
                 ].join(' ')}
               >
