@@ -246,42 +246,46 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <div className="rounded-card border border-border bg-card p-6">
           <div className="font-heading text-base font-semibold">Upcoming Deadlines</div>
-          <div className="mt-4 divide-y divide-border">
-            {upcoming.map((p) => {
-              const remaining = daysUntil(p.deadline)
-              const remainingColor =
-                remaining <= 7
-                  ? 'text-statusRed'
-                  : remaining <= 30
-                    ? 'text-statusOrange'
-                    : 'text-textSecondary'
-              const assigned = TEAM.find((m) => m.id === p.assignedTo)
-              return (
-                <div key={p.id} className="flex items-center justify-between gap-4 py-3">
-                  <div className="min-w-0">
-                    <div className="truncate text-sm font-semibold text-textPrimary">
-                      {p.title}
+          {upcoming.length === 0 ? (
+            <div className="mt-4 text-sm text-textSecondary">No upcoming deadlines.</div>
+          ) : (
+            <div className="mt-4 divide-y divide-border">
+              {upcoming.map((p) => {
+                const remaining = daysUntil(p.deadline)
+                const remainingColor =
+                  remaining <= 7
+                    ? 'text-statusRed'
+                    : remaining <= 30
+                      ? 'text-statusOrange'
+                      : 'text-textSecondary'
+                const assigned = TEAM.find((m) => m.id === p.assignedTo)
+                return (
+                  <div key={p.id} className="flex items-center justify-between gap-4 py-3">
+                    <div className="min-w-0">
+                      <div className="truncate text-sm font-semibold text-textPrimary">
+                        {p.title}
+                      </div>
+                      <div className="mt-2 flex flex-wrap items-center gap-2">
+                        <TypeBadge type={p.type} />
+                        <div className="text-xs text-textSecondary">
+                          {assigned ? assigned.name : 'Unassigned'}
+                        </div>
+                      </div>
                     </div>
-                    <div className="mt-2 flex flex-wrap items-center gap-2">
-                      <TypeBadge type={p.type} />
-                      <div className="text-xs text-textSecondary">
-                        {assigned ? assigned.name : 'Unassigned'}
+
+                    <div className="shrink-0 text-right">
+                      <div className="text-sm font-medium text-textPrimary">
+                        {formatDate(p.deadline)}
+                      </div>
+                      <div className={`mt-1 text-xs font-medium ${remainingColor}`}>
+                        {remaining} days left
                       </div>
                     </div>
                   </div>
-
-                  <div className="shrink-0 text-right">
-                    <div className="text-sm font-medium text-textPrimary">
-                      {formatDate(p.deadline)}
-                    </div>
-                    <div className={`mt-1 text-xs font-medium ${remainingColor}`}>
-                      {remaining} days left
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
+          )}
         </div>
 
         <div className="rounded-card border border-border bg-card p-6">
