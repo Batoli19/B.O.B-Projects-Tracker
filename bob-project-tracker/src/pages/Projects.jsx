@@ -37,7 +37,7 @@ function TypeBadge({ type }) {
   const color = TYPE_COLORS[type] ?? '#64748B'
   return (
     <span
-      className="inline-flex items-center rounded-btn border px-2 py-[2px] text-[12px] font-medium"
+      className="inline-flex items-center rounded-btn border px-2 py-0.5 text-xs font-medium"
       style={{ borderColor: color, color }}
     >
       {type}
@@ -89,18 +89,18 @@ export default function Projects() {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-heading text-[20px] font-semibold">All Projects</h1>
+        <h1 className="font-heading text-xl font-semibold">All Projects</h1>
         <button
           type="button"
           onClick={() => navigate('/projects/new')}
-          className="inline-flex items-center gap-2 rounded-btn bg-primary px-4 py-2 text-[14px] font-semibold text-white hover:opacity-95"
+          className="inline-flex items-center gap-2 rounded-btn bg-primary px-4 py-2 text-sm font-semibold text-white hover:opacity-95"
         >
           <PlusCircle className="h-4 w-4 text-white" />
           <span>New Project</span>
         </button>
       </div>
 
-      <div className="rounded-card border border-border bg-surface p-4">
+      <div className="rounded-card border border-border bg-card p-4">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-5">
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-textSecondary" />
@@ -108,14 +108,14 @@ export default function Projects() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search projects..."
-              className="h-10 w-full rounded-btn border border-border bg-white pl-9 pr-3 text-[14px] text-textPrimary placeholder:text-textSecondary focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30"
+              className="h-10 w-full rounded-btn border border-border bg-white pl-9 pr-3 text-sm text-textPrimary placeholder:text-textSecondary focus:outline-none focus:ring-2 focus:ring-teal/30"
             />
           </div>
 
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-[14px] text-textPrimary focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30"
+            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
           >
             <option value="all">All Statuses</option>
             <option value="on-track">On Track</option>
@@ -127,7 +127,7 @@ export default function Projects() {
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-[14px] text-textPrimary focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30"
+            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
           >
             <option value="all">All Types</option>
             <option value="Audit">Audit</option>
@@ -141,7 +141,7 @@ export default function Projects() {
           <select
             value={assignedTo}
             onChange={(e) => setAssignedTo(e.target.value)}
-            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-[14px] text-textPrimary focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30"
+            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
           >
             <option value="all">All Assignees</option>
             {TEAM.map((m) => (
@@ -161,7 +161,7 @@ export default function Projects() {
                   setType('all')
                   setAssignedTo('all')
                 }}
-                className="text-[14px] font-medium text-teal hover:underline"
+                className="text-sm font-medium text-teal hover:underline"
               >
                 Clear Filters
               </button>
@@ -172,16 +172,16 @@ export default function Projects() {
         </div>
       </div>
 
-      <div className="text-[14px] text-textSecondary">
+      <div className="text-sm text-textSecondary">
         {stats.total} total · {stats.completed} completed · {stats.inProgress} in progress
         · {stats.overdue} overdue
       </div>
 
-      <div className="rounded-card border border-border bg-surface">
+      <div className="rounded-card border border-border bg-card">
         <div className="w-full overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-[#F8FAFC]">
+              <tr className="bg-mutedBg">
                 {[
                   '#',
                   'Project Title',
@@ -194,7 +194,7 @@ export default function Projects() {
                 ].map((h) => (
                   <th
                     key={h}
-                    className="whitespace-nowrap px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wide text-textSecondary"
+                    className="whitespace-nowrap px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-textSecondary"
                   >
                     {h}
                   </th>
@@ -206,11 +206,11 @@ export default function Projects() {
                 <tr>
                   <td colSpan={8} className="px-4 py-16">
                     <div className="flex flex-col items-center justify-center gap-3">
-                      <FolderOpen className="h-12 w-12 text-[#94A3B8]" />
-                      <div className="text-[14px] font-semibold text-textPrimary">
+                      <FolderOpen className="h-12 w-12 text-textSecondary" />
+                      <div className="text-sm font-semibold text-textPrimary">
                         No projects found
                       </div>
-                      <div className="text-[13px] text-textSecondary">
+                      <div className="text-sm text-textSecondary">
                         Try adjusting your filters
                       </div>
                     </div>
@@ -224,13 +224,13 @@ export default function Projects() {
                   return (
                     <tr
                       key={p.id}
-                      className="cursor-pointer border-t border-border hover:bg-[#F8FAFC]"
+                      className="cursor-pointer border-t border-border hover:bg-mutedBg"
                       onClick={() => navigate(`/projects/${p.id}`)}
                     >
-                      <td className="whitespace-nowrap px-4 py-3 text-[13px] text-textSecondary">
+                      <td className="whitespace-nowrap px-4 py-3 text-sm text-textSecondary">
                         {idx + 1}
                       </td>
-                      <td className="min-w-[260px] px-4 py-3 text-[14px] font-semibold text-textPrimary">
+                      <td className="min-w-64 px-4 py-3 text-sm font-semibold text-textPrimary">
                         {p.title}
                       </td>
                       <td className="whitespace-nowrap px-4 py-3">
@@ -240,22 +240,22 @@ export default function Projects() {
                         <StatusBadge status={p.status} />
                       </td>
                       <td className="whitespace-nowrap px-4 py-3">
-                        <span className="inline-flex items-center rounded-btn border border-border bg-[#F8FAFC] px-2 py-[2px] text-[12px] font-medium text-textSecondary">
+                        <span className="inline-flex items-center rounded-btn border border-border bg-mutedBg px-2 py-0.5 text-xs font-medium text-textSecondary">
                           {stageLabel(p.workflowStage)}
                         </span>
                       </td>
                       <td className="whitespace-nowrap px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-white">
-                            {assignee?.avatar ?? '—'}
+                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
+                            {assignee?.avatar ?? '--'}
                           </div>
-                          <div className="text-[13px] text-textPrimary">
+                          <div className="text-sm text-textPrimary">
                             {assignee?.name ?? 'Unassigned'}
                           </div>
                         </div>
                       </td>
                       <td
-                        className={`whitespace-nowrap px-4 py-3 text-[13px] ${
+                        className={`whitespace-nowrap px-4 py-3 text-sm ${
                           deadlineIsOverdue ? 'text-statusRed' : 'text-textPrimary'
                         }`}
                       >

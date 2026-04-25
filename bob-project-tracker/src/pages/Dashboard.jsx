@@ -80,7 +80,7 @@ function TypeBadge({ type }) {
   const color = TYPE_COLORS[type] ?? '#64748B'
   return (
     <span
-      className="inline-flex items-center rounded-btn border px-2 py-[2px] text-[12px] font-medium"
+      className="inline-flex items-center rounded-btn border px-2 py-0.5 text-xs font-medium"
       style={{ borderColor: color, color }}
     >
       {type}
@@ -138,18 +138,18 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {attentionCount > 0 ? (
-        <div className="rounded-card border border-[#D97706] bg-[#FEF3C7] p-4">
+        <div className="rounded-card border border-statusOrange bg-warnBg p-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <Bell className="h-5 w-5 text-statusOrange" />
-              <div className="text-[14px] text-textPrimary">
+              <div className="text-sm text-textPrimary">
                 You have <span className="font-semibold">{attentionCount}</span>{' '}
                 items awaiting your attention
               </div>
             </div>
             <Link
               to="/notifications"
-              className="text-[14px] font-medium text-teal hover:underline"
+              className="text-sm font-medium text-teal hover:underline"
             >
               View all →
             </Link>
@@ -185,11 +185,11 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-5">
-        <div className="rounded-card border border-border bg-surface p-6 xl:col-span-3">
-          <div className="font-heading text-[16px] font-semibold">
+        <div className="rounded-card border border-border bg-card p-6 xl:col-span-3">
+          <div className="font-heading text-base font-semibold">
             Project Status Overview
           </div>
-          <div className="mt-4 h-[280px]">
+          <div className="mt-4 h-72">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -216,9 +216,9 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="rounded-card border border-border bg-surface p-6 xl:col-span-2">
-          <div className="font-heading text-[16px] font-semibold">Projects by Type</div>
-          <div className="mt-4 h-[280px]">
+        <div className="rounded-card border border-border bg-card p-6 xl:col-span-2">
+          <div className="font-heading text-base font-semibold">Projects by Type</div>
+          <div className="mt-4 h-72">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -244,8 +244,8 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-        <div className="rounded-card border border-border bg-surface p-6">
-          <div className="font-heading text-[16px] font-semibold">Upcoming Deadlines</div>
+        <div className="rounded-card border border-border bg-card p-6">
+          <div className="font-heading text-base font-semibold">Upcoming Deadlines</div>
           <div className="mt-4 divide-y divide-border">
             {upcoming.map((p) => {
               const remaining = daysUntil(p.deadline)
@@ -259,22 +259,22 @@ export default function Dashboard() {
               return (
                 <div key={p.id} className="flex items-center justify-between gap-4 py-3">
                   <div className="min-w-0">
-                    <div className="truncate text-[14px] font-semibold text-textPrimary">
+                    <div className="truncate text-sm font-semibold text-textPrimary">
                       {p.title}
                     </div>
                     <div className="mt-2 flex flex-wrap items-center gap-2">
                       <TypeBadge type={p.type} />
-                      <div className="text-[12px] text-textSecondary">
+                      <div className="text-xs text-textSecondary">
                         {assigned ? assigned.name : 'Unassigned'}
                       </div>
                     </div>
                   </div>
 
                   <div className="shrink-0 text-right">
-                    <div className="text-[13px] font-medium text-textPrimary">
+                    <div className="text-sm font-medium text-textPrimary">
                       {formatDate(p.deadline)}
                     </div>
-                    <div className={`mt-1 text-[12px] font-medium ${remainingColor}`}>
+                    <div className={`mt-1 text-xs font-medium ${remainingColor}`}>
                       {remaining} days left
                     </div>
                   </div>
@@ -284,10 +284,10 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="rounded-card border border-border bg-surface p-6">
+        <div className="rounded-card border border-border bg-card p-6">
           <div className="flex items-center gap-2">
             <Activity className="h-4 w-4 text-textSecondary" />
-            <div className="font-heading text-[16px] font-semibold">Recent Activity</div>
+            <div className="font-heading text-base font-semibold">Recent Activity</div>
           </div>
           <div className="mt-4 space-y-3">
             {recentActivity.map((entry) => {
@@ -295,16 +295,16 @@ export default function Dashboard() {
               const initials = entry.member?.avatar ?? '—'
               return (
                 <div key={entry.id} className="flex items-start gap-3">
-                  <div className="mt-[2px] flex h-8 w-8 items-center justify-center rounded-full bg-primary text-[12px] font-semibold text-white">
+                  <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
                     {initials}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="truncate text-[14px] text-textPrimary">
+                    <div className="truncate text-sm text-textPrimary">
                       <span className="font-medium">{name}</span>{' '}
                       {verbFromAction(entry.action)}{' '}
                       <span className="font-medium">{entry.projectTitle}</span>
                     </div>
-                    <div className="mt-1 text-[12px] text-textSecondary">
+                    <div className="mt-1 text-xs text-textSecondary">
                       {formatRelativeTime(entry.timestamp)}
                     </div>
                   </div>

@@ -27,9 +27,9 @@ export default function Topbar() {
   const title = getTitle(location.pathname)
 
   return (
-    <header className="h-[64px] bg-gradient-to-r from-primary to-[#102F5D] text-white">
+    <header className="h-16 bg-gradient-to-r from-primary to-primaryDeep text-white">
       <div className="flex h-full items-center justify-between px-6">
-        <div className="font-heading text-[16px] font-semibold">{title}</div>
+        <div className="font-heading text-base font-semibold">{title}</div>
         <div className="flex items-center gap-4">
           <button
             type="button"
@@ -39,7 +39,7 @@ export default function Topbar() {
             <Bell className="h-5 w-5 text-white" />
           </button>
           <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-[12px] font-semibold text-white">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-xs font-semibold text-white">
               {initials}
             </div>
           </div>
@@ -48,4 +48,3 @@ export default function Topbar() {
     </header>
   )
 }
-

@@ -31,12 +31,12 @@ export default function Sidebar() {
   ).length
 
   return (
-    <aside className="w-[260px] shrink-0 bg-gradient-to-b from-primary to-[#102F5D] text-white">
+    <aside className="w-16 shrink-0 bg-gradient-to-b from-primary to-primaryDeep text-white md:w-64">
       <div className="flex h-full flex-col">
-        <div className="px-5 py-5">
-          <div className="flex items-center gap-2">
+        <div className="px-4 py-5 md:px-5">
+          <div className="flex items-center justify-center gap-2 md:justify-start">
             <Building2 className="h-5 w-5 text-white" />
-            <div className="font-heading text-[16px] font-semibold tracking-tight">
+            <div className="hidden font-heading text-base font-semibold tracking-tight md:block">
               BoB Tracker
             </div>
           </div>
@@ -49,16 +49,17 @@ export default function Sidebar() {
               to={to}
               className={({ isActive }) =>
                 [
-                  'group relative flex items-center gap-3 rounded-[6px] px-4 py-3 text-[14px] font-medium text-white/90 hover:bg-white/10',
+                  'group relative flex items-center justify-center gap-3 rounded-btn px-3 py-3 text-sm font-medium text-white/90 hover:bg-white/10 md:justify-start md:px-4',
                   isActive
-                    ? 'bg-white/10 border-l-[3px] border-teal pl-[13px] text-white'
-                    : 'border-l-[3px] border-transparent',
+                    ? 'bg-white/10 border-l-3 border-teal text-white md:pl-3'
+                    : 'border-l-3 border-transparent',
                 ].join(' ')
               }
               end={to === '/projects'}
+              title={label}
             >
-              <Icon className="h-[18px] w-[18px] text-white/90 group-hover:text-white" />
-              <span className="flex-1">{label}</span>
+              <Icon className="h-5 w-5 text-white/90 group-hover:text-white" />
+              <span className="hidden flex-1 md:block">{label}</span>
               {showDot && attentionCount > 0 ? (
                 <span className="h-2 w-2 rounded-full bg-statusOrange" />
               ) : null}
@@ -66,11 +67,11 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        <div className="mt-auto border-t border-white/10 px-5 py-4">
-          <div className="text-[12px] text-white/80">
-            {sessionUser.name} — {sessionUser.role}
+        <div className="mt-auto border-t border-white/10 px-4 py-4 md:px-5">
+          <div className="hidden text-xs text-white/80 md:block">
+            {sessionUser.name} - {sessionUser.role}
           </div>
-          <div className="mt-1 text-[11px] text-white/60">
+          <div className="hidden text-xs text-white/60 md:block">
             Session: {getInitials(sessionUser.name)}
           </div>
         </div>
@@ -78,4 +79,3 @@ export default function Sidebar() {
     </aside>
   )
 }
-

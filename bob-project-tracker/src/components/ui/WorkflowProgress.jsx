@@ -23,11 +23,10 @@ export default function WorkflowProgress({ stage = 'draft' }) {
             title={titleCase(s)}
           />
           {idx < STAGES.length - 1 ? (
-            <div className="h-[1px] w-6 bg-border" />
+            <div className="h-px w-6 bg-border" />
           ) : null}
         </div>
       ))}
     </div>
   )
 }
-
