@@ -1,4 +1,4 @@
-import { Bell } from 'lucide-react'
+import { Bell, Menu } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { TEAM } from '../../data/mockData.js'
 import { useNotifications } from '../../state/NotificationsProvider.jsx'
@@ -21,7 +21,7 @@ function getTitle(pathname) {
   return 'BoB Tracker'
 }
 
-export default function Topbar() {
+export default function Topbar({ onMenuClick }) {
   const location = useLocation()
   const navigate = useNavigate()
   const { unreadCount } = useNotifications()
@@ -32,7 +32,17 @@ export default function Topbar() {
   return (
     <header className="h-16 bg-gradient-to-r from-primary to-primaryDeep text-white">
       <div className="flex h-full items-center justify-between px-6">
-        <div className="font-heading text-base font-semibold">{title}</div>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-btn border border-white/15 bg-white/0 hover:bg-white/10 md:hidden"
+            aria-label="Open navigation"
+            onClick={onMenuClick}
+          >
+            <Menu className="h-5 w-5 text-white" />
+          </button>
+          <div className="font-heading text-base font-semibold">{title}</div>
+        </div>
         <div className="flex items-center gap-4">
           <button
             type="button"

@@ -25,17 +25,27 @@ function getInitials(name) {
     .join('')
 }
 
-export default function Sidebar() {
+export default function Sidebar({ expanded = false, onNavigate }) {
   const sessionUser = TEAM.find((m) => m.name === 'Thato Seretse') ?? TEAM[1]
   const { unreadCount } = useNotifications()
 
   return (
-    <aside className="w-16 shrink-0 bg-gradient-to-b from-primary to-primaryDeep text-white md:w-64">
+    <aside
+      className={[
+        'shrink-0 bg-gradient-to-b from-primary to-primaryDeep text-white',
+        expanded ? 'w-64' : 'w-16 md:w-64',
+      ].join(' ')}
+    >
       <div className="flex h-full flex-col">
         <div className="px-4 py-5 md:px-5">
           <div className="flex items-center justify-center gap-2 md:justify-start">
             <Building2 className="h-5 w-5 text-white" />
-            <div className="hidden font-heading text-base font-semibold tracking-tight md:block">
+            <div
+              className={[
+                'font-heading text-base font-semibold tracking-tight',
+                expanded ? 'block' : 'hidden md:block',
+              ].join(' ')}
+            >
               BoB Tracker
             </div>
           </div>
@@ -56,9 +66,17 @@ export default function Sidebar() {
               }
               end={to === '/projects'}
               title={label}
+              onClick={() => onNavigate?.()}
             >
               <Icon className="h-5 w-5 text-white/90 group-hover:text-white" />
-              <span className="hidden flex-1 md:block">{label}</span>
+              <span
+                className={[
+                  'flex-1',
+                  expanded ? 'block' : 'hidden md:block',
+                ].join(' ')}
+              >
+                {label}
+              </span>
               {showDot && unreadCount > 0 ? (
                 <span className="h-2 w-2 rounded-full bg-statusOrange" />
               ) : null}
@@ -67,10 +85,20 @@ export default function Sidebar() {
         </nav>
 
         <div className="mt-auto border-t border-white/10 px-4 py-4 md:px-5">
-          <div className="hidden text-xs text-white/80 md:block">
+          <div
+            className={[
+              'text-xs text-white/80',
+              expanded ? 'block' : 'hidden md:block',
+            ].join(' ')}
+          >
             {sessionUser.name} - {sessionUser.role}
           </div>
-          <div className="hidden text-xs text-white/60 md:block">
+          <div
+            className={[
+              'text-xs text-white/60',
+              expanded ? 'block' : 'hidden md:block',
+            ].join(' ')}
+          >
             Session: {getInitials(sessionUser.name)}
           </div>
         </div>
