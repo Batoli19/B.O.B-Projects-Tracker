@@ -1,4 +1,4 @@
-import { Bell, Menu } from 'lucide-react'
+import { Bell, ChevronDown, Menu, Search } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { TEAM } from '../../data/mockData.js'
 import { useNotifications } from '../../state/NotificationsProvider.jsx'
@@ -24,44 +24,66 @@ function getTitle(pathname) {
 export default function Topbar({ onMenuClick }) {
   const location = useLocation()
   const navigate = useNavigate()
-  const { unreadCount } = useNotifications()
+  const { notifications } = useNotifications()
+  const hasNotifications = notifications.length > 0
   const sessionUser = TEAM.find((m) => m.name === 'Thato Seretse') ?? TEAM[1]
   const initials = getInitials(sessionUser.name)
   const title = getTitle(location.pathname)
 
   return (
-    <header className="h-16 bg-gradient-to-r from-primary to-primaryDeep text-white">
-      <div className="flex h-full items-center justify-between px-6">
+    <header className="h-[60px] bg-card">
+      <div className="flex h-full items-center justify-between border-b border-border px-6">
         <div className="flex items-center gap-3">
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-btn border border-white/15 bg-white/0 hover:bg-white/10 md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-btn border border-border bg-card text-textSecondary hover:bg-mutedBg md:hidden"
             aria-label="Open navigation"
             onClick={onMenuClick}
           >
-            <Menu className="h-5 w-5 text-white" />
+            <Menu className="h-5 w-5" />
           </button>
-          <div className="font-heading text-base font-semibold">{title}</div>
+          <div className="leading-tight">
+            <div className="font-heading text-[18px] font-bold text-textPrimary">
+              {title}
+            </div>
+            <div className="mt-0.5 text-[11px] tracking-[0.3px] text-slate-400">
+              Bank of Botswana / {title}
+            </div>
+          </div>
         </div>
+
         <div className="flex items-center gap-4">
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-btn border border-white/15 bg-white/0 hover:bg-white/10"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-btn text-textSecondary hover:text-primary"
+            aria-label="Search"
+          >
+            <Search className="h-5 w-5" />
+          </button>
+
+          <button
+            type="button"
+            className="relative inline-flex h-9 w-9 items-center justify-center rounded-btn text-textSecondary hover:text-primary"
             aria-label="Notifications"
             onClick={() => navigate('/notifications')}
           >
-            <span className="relative">
-              <Bell className="h-5 w-5 text-white" />
-              {unreadCount > 0 ? (
-                <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-statusOrange px-1 text-xs font-bold text-white">
-                  {unreadCount > 99 ? '99+' : unreadCount}
-                </span>
-              ) : null}
-            </span>
+            <Bell className="h-5 w-5" />
+            {hasNotifications ? (
+              <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-statusOrange" />
+            ) : null}
           </button>
-          <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-xs font-semibold text-white">
+
+          <div className="h-6 w-px bg-border" />
+
+          <div className="flex items-center gap-2 rounded-[8px] px-2.5 py-1.5 hover:bg-mutedBg">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-border bg-primary text-xs font-bold text-white">
               {initials}
+            </div>
+            <div className="flex min-w-0 items-center gap-2">
+              <div className="max-w-[160px] truncate text-[13px] font-semibold text-textPrimary">
+                Thato Seretse
+              </div>
+              <ChevronDown className="h-[14px] w-[14px] text-slate-400" />
             </div>
           </div>
         </div>
