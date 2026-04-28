@@ -140,7 +140,7 @@ export default function Dashboard() {
               to="/notifications"
               className="text-sm font-medium text-teal hover:underline"
             >
-              View all →
+              View all &gt;
             </Link>
           </div>
         </div>
@@ -307,10 +307,10 @@ export default function Dashboard() {
           <div className="mt-4 space-y-3">
             {recentActivity.map((entry) => {
               const name = entry.member?.name ?? 'Unknown'
-              const initials = entry.member?.avatar ?? '—'
+              const initials = entry.member?.avatar ?? '--'
               return (
                 <div key={entry.id} className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full border-2 border-border bg-primary text-xs font-bold text-white">
+                  <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-primary text-xs font-bold text-white">
                     {initials}
                   </div>
                   <div className="min-w-0 flex-1">

@@ -153,8 +153,8 @@ export default function Projects() {
       </div>
 
       <div className="text-sm text-textSecondary">
-        {stats.total} total · {stats.completed} completed · {stats.inProgress} in progress
-        · {stats.overdue} overdue
+        {stats.total} total - {stats.completed} completed - {stats.inProgress} in progress -{' '}
+        {stats.overdue} overdue
       </div>
 
       <div className="rounded-card border border-border bg-card">
@@ -226,7 +226,7 @@ export default function Projects() {
                       </td>
                       <td className="whitespace-nowrap px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-border bg-primary text-xs font-bold text-white">
+                          <div className="flex h-7 w-7 items-center justify-center rounded-full border border-border bg-primary text-xs font-bold text-white">
                             {assignee?.avatar ?? '--'}
                           </div>
                           <div className="text-sm text-textPrimary">

@@ -49,7 +49,7 @@ export default function NewProject() {
       message: `"${title.trim()}" added to the tracker.`,
     })
 
-    // No persistence yet (mock data only) — navigate back to the list.
+    // No persistence yet (mock data only) - navigate back to the list.
     navigate('/projects')
   }
 

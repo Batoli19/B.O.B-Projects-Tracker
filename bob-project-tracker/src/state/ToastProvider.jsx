@@ -5,7 +5,7 @@ const ToastContext = createContext(null)
 
 function ToastItem({ toast, onDismiss }) {
   return (
-    <div className="pointer-events-auto flex w-full items-start gap-3 rounded-card border border-border bg-card p-4">
+    <div className="pointer-events-auto flex w-full items-start gap-3 rounded-card border border-border bg-card p-6">
       <CheckCircle2 className="mt-0.5 h-5 w-5 text-statusGreen" />
       <div className="min-w-0 flex-1">
         <div className="text-sm font-semibold text-textPrimary">{toast.title}</div>
@@ -61,4 +61,3 @@ export function useToast() {
   if (!ctx) throw new Error('useToast must be used within ToastProvider')
   return ctx
 }
-

@@ -57,7 +57,7 @@ export default function Notifications() {
         <button
           type="button"
           onClick={markAllRead}
-          className="rounded-btn border-2 border-primary bg-card px-[18px] py-2 text-[13px] font-semibold text-primary transition-colors duration-150 hover:bg-mutedBg"
+          className="rounded-btn border border-primary bg-card px-[18px] py-2 text-[13px] font-semibold text-primary transition-colors duration-150 hover:bg-mutedBg"
         >
           Mark all as read
         </button>
@@ -121,7 +121,7 @@ export default function Notifications() {
                           onClick={() => markRead(n.id)}
                           className="text-sm font-medium text-teal hover:underline"
                         >
-                          View Project →
+                          View Project &gt;
                         </Link>
                       </div>
                     </div>

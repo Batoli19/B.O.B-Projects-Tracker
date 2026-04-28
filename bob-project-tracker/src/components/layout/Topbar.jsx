@@ -76,7 +76,7 @@ export default function Topbar({ onMenuClick }) {
           <div className="h-6 w-px bg-border" />
 
           <div className="flex items-center gap-2 rounded-[8px] px-2.5 py-1.5 hover:bg-mutedBg">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-border bg-primary text-xs font-bold text-white">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-primary text-xs font-bold text-white">
               {initials}
             </div>
             <div className="flex min-w-0 items-center gap-2">
