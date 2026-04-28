@@ -36,7 +36,7 @@ export default function Topbar({ onMenuClick }) {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-btn border border-border bg-card text-textSecondary hover:bg-mutedBg md:hidden"
+            className="icon-btn md:hidden"
             aria-label="Open navigation"
             onClick={onMenuClick}
           >
@@ -46,7 +46,7 @@ export default function Topbar({ onMenuClick }) {
             <div className="font-heading text-[18px] font-bold text-textPrimary">
               {title}
             </div>
-            <div className="mt-0.5 text-[11px] tracking-[0.3px] text-slate-400">
+            <div className="mt-0.5 text-[11px] tracking-[0.3px] text-textSecondary">
               Bank of Botswana / {title}
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function Topbar({ onMenuClick }) {
         <div className="flex items-center gap-4">
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-btn text-textSecondary hover:text-primary"
+            className="icon-btn border-transparent hover:border-border"
             aria-label="Search"
           >
             <Search className="h-5 w-5" />
@@ -63,7 +63,7 @@ export default function Topbar({ onMenuClick }) {
 
           <button
             type="button"
-            className="relative inline-flex h-9 w-9 items-center justify-center rounded-btn text-textSecondary hover:text-primary"
+            className="icon-btn relative border-transparent hover:border-border"
             aria-label="Notifications"
             onClick={() => navigate('/notifications')}
           >
@@ -75,7 +75,7 @@ export default function Topbar({ onMenuClick }) {
 
           <div className="h-6 w-px bg-border" />
 
-          <div className="flex items-center gap-2 rounded-[8px] px-2.5 py-1.5 hover:bg-mutedBg">
+          <div className="flex items-center gap-2 rounded-[8px] px-2.5 py-1.5 transition-colors duration-150 hover:bg-mutedBg">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-primary text-xs font-bold text-white">
               {initials}
             </div>
@@ -83,7 +83,7 @@ export default function Topbar({ onMenuClick }) {
               <div className="max-w-[160px] truncate text-[13px] font-semibold text-textPrimary">
                 Thato Seretse
               </div>
-              <ChevronDown className="h-[14px] w-[14px] text-slate-400" />
+              <ChevronDown className="h-[14px] w-[14px] text-textSecondary" />
             </div>
           </div>
         </div>

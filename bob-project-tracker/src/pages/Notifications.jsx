@@ -57,7 +57,7 @@ export default function Notifications() {
         <button
           type="button"
           onClick={markAllRead}
-          className="rounded-btn border border-primary bg-card px-[18px] py-2 text-[13px] font-semibold text-primary transition-colors duration-150 hover:bg-mutedBg"
+          className="btn-outline-primary"
         >
           Mark all as read
         </button>
@@ -72,10 +72,8 @@ export default function Notifications() {
               type="button"
               onClick={() => setActiveTab(t.key)}
               className={[
-                'rounded-btn border px-3 py-2 text-sm font-semibold',
-                active
-                  ? 'border-primary bg-primary text-white'
-                  : 'border-border bg-card text-textPrimary hover:bg-mutedBg',
+                'tab',
+                active ? 'tab-active' : 'tab-inactive',
               ].join(' ')}
             >
               {t.label}
@@ -85,7 +83,7 @@ export default function Notifications() {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="rounded-card border border-border bg-card p-6 text-center">
+        <div className="card text-center">
           <div className="text-sm font-semibold text-textPrimary">No notifications</div>
           <div className="mt-1 text-sm text-textSecondary">
             You are all caught up for this filter.
@@ -99,13 +97,13 @@ export default function Notifications() {
               <div
                 key={n.id}
                 className={[
-                  'rounded-card border border-border p-6',
-                  n.unread ? 'border-l-3 border-l-primary bg-mutedBg' : 'bg-card',
+                  'card',
+                  n.unread ? 'border-l-3 border-l-primary bg-mutedBg' : '',
                 ].join(' ')}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-3">
-                    <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-card">
+                    <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card">
                       <Icon className={['h-5 w-5', iconClass].join(' ')} />
                     </div>
                     <div className="min-w-0">

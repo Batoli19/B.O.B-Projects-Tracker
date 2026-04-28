@@ -187,7 +187,7 @@ export default function ProjectDetail() {
               type="button"
               onClick={onAdvanceStage}
               className={[
-                'inline-flex items-center gap-2 rounded-btn px-[18px] py-2 text-[13px] font-semibold transition-colors duration-150',
+                'btn',
                 actionMeta.className,
               ].join(' ')}
             >
@@ -202,15 +202,11 @@ export default function ProjectDetail() {
         </div>
       </div>
 
-      <div className="rounded-card border border-border bg-card p-6">
+      <div className="card">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <div className="font-heading text-base font-semibold text-textPrimary">
-              Workflow
-            </div>
-            <div className="mt-1 text-sm text-textSecondary">
-              Draft to resolution approval chain
-            </div>
+            <div className="card-title">Workflow</div>
+            <div className="card-subtitle">Draft to resolution approval chain</div>
           </div>
           <div className="text-right text-xs text-textSecondary">
             Current stage
@@ -224,10 +220,8 @@ export default function ProjectDetail() {
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
         <div className="space-y-4 xl:col-span-2">
-          <div className="rounded-card border border-border bg-card p-6">
-            <div className="font-heading text-base font-semibold text-textPrimary">
-              Project Information
-            </div>
+          <div className="card">
+            <div className="card-title">Project Information</div>
             <div className="mt-2 text-sm text-textSecondary">{project.description}</div>
 
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -247,15 +241,11 @@ export default function ProjectDetail() {
             </div>
           </div>
 
-          <div className="rounded-card border border-border bg-card p-6">
+          <div className="card">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <div className="font-heading text-base font-semibold text-textPrimary">
-                  Comments and Feedback
-                </div>
-                <div className="mt-1 text-sm text-textSecondary">
-                  Threaded notes for reports and reviewer feedback
-                </div>
+                <div className="card-title">Comments and Feedback</div>
+                <div className="card-subtitle">Threaded notes for reports and reviewer feedback</div>
               </div>
             </div>
 
@@ -266,10 +256,8 @@ export default function ProjectDetail() {
                     type="button"
                     onClick={() => setNewCommentType('report')}
                     className={[
-                      'rounded-btn border px-3 py-2 text-sm font-semibold transition-colors duration-150',
-                      newCommentType === 'report'
-                        ? 'border-primary bg-primary text-white'
-                        : 'border-border bg-card text-textPrimary hover:bg-mutedBg',
+                      'tab',
+                      newCommentType === 'report' ? 'tab-active' : 'tab-inactive',
                     ].join(' ')}
                   >
                     Report
@@ -278,10 +266,8 @@ export default function ProjectDetail() {
                     type="button"
                     onClick={() => setNewCommentType('feedback')}
                     className={[
-                      'rounded-btn border px-3 py-2 text-sm font-semibold transition-colors duration-150',
-                      newCommentType === 'feedback'
-                        ? 'border-primary bg-primary text-white'
-                        : 'border-border bg-card text-textPrimary hover:bg-mutedBg',
+                      'tab',
+                      newCommentType === 'feedback' ? 'tab-active' : 'tab-inactive',
                     ].join(' ')}
                   >
                     Feedback
@@ -297,7 +283,7 @@ export default function ProjectDetail() {
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 rows={3}
-                className="mt-3 w-full rounded-btn border border-border bg-white px-3 py-2 text-sm text-textPrimary placeholder:text-textSecondary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                className="field-textarea mt-3"
                 placeholder="Write a comment..."
               />
 
@@ -307,10 +293,10 @@ export default function ProjectDetail() {
                   onClick={onPostComment}
                   disabled={newComment.trim().length === 0}
                   className={[
-                    'inline-flex items-center gap-2 rounded-btn bg-primary px-[18px] py-2 text-[13px] font-semibold text-white transition-colors duration-150',
+                    'btn-primary',
                     newComment.trim().length === 0
                       ? 'cursor-not-allowed opacity-60'
-                      : 'hover:bg-sidebarStart',
+                      : '',
                   ].join(' ')}
                 >
                   <Send className="h-4 w-4" />
@@ -341,15 +327,11 @@ export default function ProjectDetail() {
             </div>
           </div>
 
-          <div className="rounded-card border border-border bg-card p-6">
+          <div className="card">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="font-heading text-base font-semibold text-textPrimary">
-                  Audit Trail
-                </div>
-                <div className="mt-1 text-sm text-textSecondary">
-                  Blockchain-verified activity trail
-                </div>
+                <div className="card-title">Audit Trail</div>
+                <div className="card-subtitle">Blockchain-verified activity trail</div>
               </div>
               <div className="text-right text-xs text-textSecondary">
                 Immutable log
@@ -404,10 +386,8 @@ export default function ProjectDetail() {
         </div>
 
         <aside className="space-y-4">
-          <div className="rounded-card border border-border bg-card p-6">
-            <div className="font-heading text-base font-semibold text-textPrimary">
-              Assigned Member
-            </div>
+          <div className="card">
+            <div className="card-title">Assigned Member</div>
             <div className="mt-4 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-primary text-sm font-bold text-white">
                 {assignee?.avatar ?? '--'}
@@ -423,8 +403,8 @@ export default function ProjectDetail() {
             </div>
           </div>
 
-          <div className="rounded-card border border-border bg-card p-6">
-            <div className="font-heading text-base font-semibold text-textPrimary">Key Dates</div>
+          <div className="card">
+            <div className="card-title">Key Dates</div>
             <div className="mt-4 space-y-3">
               {[
                 { label: 'Start', value: formatDate(project.startDate) },
@@ -440,10 +420,8 @@ export default function ProjectDetail() {
             </div>
           </div>
 
-          <div className="rounded-card border border-border bg-card p-6">
-            <div className="font-heading text-base font-semibold text-textPrimary">
-              Quick Stats
-            </div>
+          <div className="card">
+            <div className="card-title">Quick Stats</div>
             <div className="mt-4 space-y-3">
               <div className="flex items-center justify-between gap-3">
                 <div className="text-sm text-textSecondary">Status</div>

@@ -11,8 +11,8 @@ function Pill({ active, colorClass, label, onClick }) {
       type="button"
       onClick={onClick}
       className={[
-        'rounded-btn border px-3 py-2 text-sm font-semibold',
-        active ? `${colorClass} border-transparent text-white` : 'border-border bg-card text-textPrimary hover:bg-mutedBg',
+        'tab',
+        active ? `${colorClass} border-transparent text-white` : 'tab-inactive',
       ].join(' ')}
     >
       {label}
@@ -64,10 +64,10 @@ export default function NewProject() {
         </div>
       </div>
 
-      <form onSubmit={onSubmit} className="rounded-card border border-border bg-card p-6">
+      <form onSubmit={onSubmit} className="card">
         <div className="space-y-6">
           <section>
-            <div className="font-heading text-base font-semibold">Project Information</div>
+            <div className="card-title">Project Information</div>
             <div className="mt-4 space-y-4">
               <div>
                 <label className="text-sm font-medium text-textPrimary">
@@ -76,7 +76,7 @@ export default function NewProject() {
                 <input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="mt-2 h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary placeholder:text-textSecondary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                  className="field mt-2"
                   placeholder="e.g., Treasury Controls Review"
                   required
                 />
@@ -88,7 +88,7 @@ export default function NewProject() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={4}
-                  className="mt-2 w-full rounded-btn border border-border bg-white px-3 py-2 text-sm text-textPrimary placeholder:text-textSecondary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                  className="field-textarea mt-2"
                   placeholder="Add context, scope, and key deliverables..."
                 />
               </div>
@@ -99,7 +99,7 @@ export default function NewProject() {
                   <select
                     value={type}
                     onChange={(e) => setType(e.target.value)}
-                    className="mt-2 h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                    className="field mt-2"
                   >
                     {TYPES.map((t) => (
                       <option key={t} value={t}>
@@ -137,7 +137,7 @@ export default function NewProject() {
           </section>
 
           <section>
-            <div className="font-heading text-base font-semibold">Dates & Deadlines</div>
+            <div className="card-title">Dates & Deadlines</div>
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label className="text-sm font-medium text-textPrimary">Start Date</label>
@@ -145,7 +145,7 @@ export default function NewProject() {
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="mt-2 h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                  className="field mt-2"
                 />
               </div>
               <div>
@@ -154,7 +154,7 @@ export default function NewProject() {
                   type="date"
                   value={deadline}
                   onChange={(e) => setDeadline(e.target.value)}
-                  className="mt-2 h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                  className="field mt-2"
                 />
               </div>
               <div>
@@ -163,7 +163,7 @@ export default function NewProject() {
                   type="date"
                   value={inspectionDate}
                   onChange={(e) => setInspectionDate(e.target.value)}
-                  className="mt-2 h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                  className="field mt-2"
                 />
               </div>
               <div>
@@ -172,20 +172,20 @@ export default function NewProject() {
                   type="date"
                   value={auditDate}
                   onChange={(e) => setAuditDate(e.target.value)}
-                  className="mt-2 h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                  className="field mt-2"
                 />
               </div>
             </div>
           </section>
 
           <section>
-            <div className="font-heading text-base font-semibold">Assignment</div>
+            <div className="card-title">Assignment</div>
             <div className="mt-4">
               <label className="text-sm font-medium text-textPrimary">Assign To</label>
               <select
                 value={assignedTo}
                 onChange={(e) => setAssignedTo(e.target.value)}
-                className="mt-2 h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                className="field mt-2"
               >
                 {TEAM.map((m) => (
                   <option key={m.id} value={String(m.id)}>
@@ -197,14 +197,14 @@ export default function NewProject() {
           </section>
 
           <section>
-            <div className="font-heading text-base font-semibold">Initial Workflow Stage</div>
+            <div className="card-title">Initial Workflow Stage</div>
             <div className="mt-4 space-y-4">
               <div>
                 <label className="text-sm font-medium text-textPrimary">Stage</label>
                 <select
                   value={stage}
                   onChange={(e) => setStage(e.target.value)}
-                  className="mt-2 h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                  className="field mt-2"
                 >
                   <option value="draft">Draft</option>
                   <option value="waiting-review">Waiting for Review</option>
@@ -219,7 +219,7 @@ export default function NewProject() {
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   rows={3}
-                  className="mt-2 w-full rounded-btn border border-border bg-white px-3 py-2 text-sm text-textPrimary placeholder:text-textSecondary focus:outline-none focus:ring-2 focus:ring-teal/30"
+                  className="field-textarea mt-2"
                   placeholder="Any notes for the reviewer..."
                 />
               </div>
@@ -230,7 +230,7 @@ export default function NewProject() {
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="rounded-btn border border-border bg-card px-[18px] py-2 text-[13px] font-semibold text-textPrimary transition-colors duration-150 hover:bg-mutedBg"
+              className="btn-secondary"
             >
               Cancel
             </button>
@@ -238,8 +238,8 @@ export default function NewProject() {
               type="submit"
               disabled={!canSubmit}
               className={[
-                'rounded-btn bg-primary px-[18px] py-2 text-[13px] font-semibold text-white transition-colors duration-150',
-                canSubmit ? 'hover:bg-sidebarStart' : 'cursor-not-allowed opacity-60',
+                'btn-primary',
+                canSubmit ? '' : 'cursor-not-allowed opacity-60',
               ].join(' ')}
             >
               Create Project

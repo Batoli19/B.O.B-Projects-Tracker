@@ -73,14 +73,14 @@ export default function Projects() {
         <button
           type="button"
           onClick={() => navigate('/projects/new')}
-          className="inline-flex items-center gap-2 rounded-btn bg-primary px-[18px] py-2 text-[13px] font-semibold text-white transition-colors duration-150 hover:bg-sidebarStart"
+          className="btn-primary"
         >
           <PlusCircle className="h-4 w-4 text-white" />
           <span>New Project</span>
         </button>
       </div>
 
-      <div className="rounded-card border border-border bg-card p-6">
+      <div className="card">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-5">
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-textSecondary" />
@@ -88,14 +88,14 @@ export default function Projects() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search projects..."
-              className="h-10 w-full rounded-btn border border-border bg-white pl-9 pr-3 text-sm text-textPrimary placeholder:text-textSecondary focus:outline-none focus:ring-2 focus:ring-teal/30"
+              className="field pl-9 pr-3"
             />
           </div>
 
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+            className="field"
           >
             <option value="all">All Statuses</option>
             <option value="on-track">On Track</option>
@@ -107,7 +107,7 @@ export default function Projects() {
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+            className="field"
           >
             <option value="all">All Types</option>
             <option value="Audit">Audit</option>
@@ -121,7 +121,7 @@ export default function Projects() {
           <select
             value={assignedTo}
             onChange={(e) => setAssignedTo(e.target.value)}
-            className="h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary focus:outline-none focus:ring-2 focus:ring-teal/30"
+            className="field"
           >
             <option value="all">All Assignees</option>
             {TEAM.map((m) => (
@@ -152,16 +152,26 @@ export default function Projects() {
         </div>
       </div>
 
-      <div className="text-sm text-textSecondary">
-        {stats.total} total - {stats.completed} completed - {stats.inProgress} in progress -{' '}
-        {stats.overdue} overdue
+      <div className="flex flex-wrap items-center gap-2 text-sm text-textSecondary">
+        <span className="rounded-[4px] border border-border bg-card px-2 py-[3px] text-[11px] font-semibold">
+          {stats.total} total
+        </span>
+        <span className="rounded-[4px] border border-border bg-card px-2 py-[3px] text-[11px] font-semibold">
+          {stats.completed} completed
+        </span>
+        <span className="rounded-[4px] border border-border bg-card px-2 py-[3px] text-[11px] font-semibold">
+          {stats.inProgress} in progress
+        </span>
+        <span className="rounded-[4px] border border-border bg-card px-2 py-[3px] text-[11px] font-semibold">
+          {stats.overdue} overdue
+        </span>
       </div>
 
       <div className="rounded-card border border-border bg-card">
         <div className="w-full overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-mutedBg border-b-2 border-border">
+              <tr className="bg-mutedBg border-b border-border">
                 {[
                   '#',
                   'Project Title',
@@ -174,7 +184,7 @@ export default function Projects() {
                 ].map((h) => (
                   <th
                     key={h}
-                    className="whitespace-nowrap px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[1.2px] text-slate-400"
+                    className="whitespace-nowrap px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[1.2px] text-textSecondary"
                   >
                     {h}
                   </th>

@@ -2,6 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .card {
+    @apply rounded-card border border-border bg-card p-6;
+  }
+
+  .card-title {
+    @apply font-heading text-base font-semibold text-textPrimary;
+  }
+
+  .card-subtitle {
+    @apply mt-1 text-sm text-textSecondary;
+  }
+
+  .section-title {
+    @apply font-heading text-[14px] font-bold uppercase tracking-[1px] text-textPrimary;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-btn px-[18px] py-2 text-[13px] font-semibold transition-colors duration-150;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-sidebarStart;
+  }
+
+  .btn-secondary {
+    @apply btn border border-border bg-card text-textPrimary hover:bg-mutedBg;
+  }
+
+  .btn-outline-primary {
+    @apply btn border border-primary bg-card text-primary hover:bg-mutedBg;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-btn border border-border bg-card text-textSecondary transition-colors duration-150 hover:bg-mutedBg;
+  }
+
+  .field {
+    @apply h-10 w-full rounded-btn border border-border bg-white px-3 text-sm text-textPrimary placeholder:text-textSecondary focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/30;
+  }
+
+  .field-textarea {
+    @apply w-full rounded-btn border border-border bg-white px-3 py-2 text-sm text-textPrimary placeholder:text-textSecondary focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/30;
+  }
+
+  .tab {
+    @apply rounded-btn border px-3 py-2 text-sm font-semibold transition-colors duration-150;
+  }
+
+  .tab-active {
+    @apply border-primary bg-primary text-white;
+  }
+
+  .tab-inactive {
+    @apply border-border bg-card text-textPrimary hover:bg-mutedBg;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
