@@ -1820,6 +1820,49 @@ td small {
   display: none;
 }
 
+.demo-login .security-note {
+  display: block;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.demo-access {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  background: var(--surface-3);
+}
+
+.demo-access h3 {
+  margin: 0 0 12px;
+}
+
+.two-col-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.muted-copy {
+  color: var(--muted);
+  margin-top: -4px;
+}
+
+.six-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.table-actions {
+  display: grid;
+  gap: 6px;
+}
+
+.badge-info {
+  color: var(--blue);
+  background: var(--blue-bg);
+  border-color: color-mix(in srgb, var(--blue) 38%, var(--border));
+}
+
 @media (max-width: 1199px) {
   .sidebar {
     position: fixed;
@@ -1851,7 +1894,8 @@ td small {
   .pillar-grid,
   .programme-grid,
   .report-grid,
-  .hero-summary {
+  .hero-summary,
+  .six-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1926,11 +1970,16 @@ td small {
   .report-grid,
   .metrics-grid,
   .hero-summary,
+  .six-grid,
   .two-col,
   .three-col,
   .right-rail,
   .health-panel,
   .split-chart {
+    grid-template-columns: 1fr;
+  }
+
+  .two-col-buttons {
     grid-template-columns: 1fr;
   }
 
